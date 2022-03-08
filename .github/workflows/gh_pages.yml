@@ -1,18 +1,14 @@
-name: GitHub Pages
+name: github pages
 
 on:
   push:
     branches:
-      - main
+      - main  # Set a branch to deploy
+  pull_request:
 
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./site
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -22,7 +18,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.91.2'
+          hugo-version: 'latest'
           # extended: true
 
       - name: Build
@@ -30,7 +26,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/public
+          publish_dir: ./public
