@@ -1,5 +1,5 @@
 ######################## default configuration ####################
-baseURL = "https://codestronaut.github.io/"
+baseURL = "https://demo.gethugothemes.com/bookworm-light/"
 title = "Bookworm - Personal Blog Template"
 theme = "bookworm-light"
 # post pagination
